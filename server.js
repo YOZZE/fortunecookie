@@ -51,7 +51,7 @@ var server = http.createServer(function (req, res) {
         });
 });
 
-server.listen(3000, '127.0.0.1', function () {
+server.listen(3030, '127.0.0.1', function () {
     console.log(`>Server corriendo en http://${IP}:${PORT}...`.info);
 
 

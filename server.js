@@ -4,10 +4,11 @@ var mime=require('mime');
 
 var colors = require('colors');
 //estableciendo tema de colores
+var staticServer = require ("./internals/static-server");
 //Importando el objeto configurador
 var config = require ('./config/config');
-
-
+//Importando manejador
+var handlers = require ("./internals/handlers");
 
 colors.setTheme(config.colorTheme);
 //importando configuraciones 
@@ -15,45 +16,33 @@ colors.setTheme(config.colorTheme);
         PORT = config.PORT;
 
 var server = http.createServer(function (req, res) {
+    
     var url  = req.url;
+     console.log(`> Recurso Solicitado: ${url}`.data);
     if(url === "/"){
         url = '/index.html'
     }
-    // Generar la ruta real del archivo socilitado
 
+    // verificando si la url esta asoiada a una accion que puede hacer el server
+   
+   
+    if (typeof (handlers [url])=== "function"){
     
+    //si esxiste un afuncion en hanlders llamada como el contenido de la variable "url"
+    
+    handlers[url](req, res);
+    // no se encontro el manejado para url
+    //solicita por el ususario
+    //se intenta servir de manera estatica
+}else {
+    staticServer.serve(url, res);
 
-    console.log(`>Recurso solicitado >${url}`.data);
-    var filePath = './static' + url;
-    console.log(`> Se servira archivo: ${filePath}`.data);
-    //Seleccionar el tipo mime
-    var mimeType = mime.lookup(filePath);
-    fs.readFile(filePath,
-        function (err, content) {
-
-            if (err) {//hubo error
-                res.writeHead(500, {
-                    'Content-Type': "text/html"
-
-                });
-                console.log('>error en la lectura de'.error +
-                    'un archivo: ln20 server.js'.error);
-
-                res.end("<h1>Error Interno</h1>")
-
-            } else {//no hubo error
-                res.writeHead(200, {
-                    'Content-Type': mimeType
-                });
-                console.log(`>sirviendo: ${filePath}` .data);
-                res.end(content);
-            }
-        });
+}
+    
 });
 
-server.listen(3030, '127.0.0.1', function () {
+server.listen(PORT, IP, function () {
     console.log(`>Server corriendo en http://${IP}:${PORT}...`.info);
 
 
 });
-//comentary

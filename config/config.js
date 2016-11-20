@@ -6,4 +6,5 @@ module.exports= {
     'info': 'rainbow',
     'error': 'red'
     }
+   
 };

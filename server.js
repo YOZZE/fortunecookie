@@ -1,7 +1,6 @@
 var http = require('http');
 var fs = require('fs');
 var mime=require('mime');
-
 var colors = require('colors');
 //estableciendo tema de colores
 var staticServer = require ("./internals/static-server");
@@ -26,7 +25,7 @@ var server = http.createServer(function (req, res) {
     // verificando si la url esta asoiada a una accion que puede hacer el server
    
    
-    if (typeof (handlers [url])=== "function"){
+    if (typeof (handlers [url]) === "function"){
     
     //si esxiste un afuncion en hanlders llamada como el contenido de la variable "url"
     

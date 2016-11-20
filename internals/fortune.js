@@ -7,7 +7,7 @@
      ];
      
      function getIntRandomNumber(min, max) {
-         return Math.floor(Math.random( )   * (max - min)+ min);
+         return Math.floor(Math.random()   * (max - min)+ min);
         
      }
 
@@ -15,13 +15,13 @@
 module.exports = {
   "getFortune"  : function (cb){
       //Construyo objeto respuesta
-      var selector = getIntRandomNumber(0, fortunes.length - 1);
+      var selector = getIntRandomNumber(0,fortunes.length - 1);
       var fortuneMessage = fortunes[selector];
       var fortunePaperObjet = {
           "paper" : fortuneMessage
       };
       
-      cb(JSON.stringify(fortunePaperObj);
+      cb(JSON.stringify(fortunePaperObjet ));
       
   }
 };

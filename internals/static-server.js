@@ -1,9 +1,8 @@
-var fs = require ('fs');
-var  mime=require('mime');
+
+var  mime=require("mime");
+ var fs = require("fs");
  
- exports.server = function (url, res){
-    
-     
+ exports.serve = function (url, res){
      var filePath = './static' + url;
     console.log(`> Se servira archivo: ${filePath}`.data);
     //Seleccionar el tipo mime

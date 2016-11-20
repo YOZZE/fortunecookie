@@ -7,12 +7,11 @@ colors.setTheme(require("../config/config").colorTheme);
 
 var fortune = require ("./fortune");
 var _crackTheCookie = function (req, res){
-    console.log("> Cookie crash requested...");
-    res.end ("El exito es la suma del trabajo mas la disciplina");
+    console.log("> Cookie crash requested...".info);
     fortune.getFortune(function (fortunePaperObj){
         //preparando para contestar con jJson
         res.writeHead(200,{
-            "Content-Type": "aplication/json"
+            "Content-Type": "application/json"
             
         });
         //respondiendo con el objeto
@@ -22,7 +21,7 @@ var _crackTheCookie = function (req, res){
 };
 
 var _getAuthor = function(req, res){
-    console.log ("> Se solicito:Autor..");
+    console.log ("> Se solicito:Autor...".info);
     res.end("Author: Yocelin Vazquez Carrillo");
     
 };
@@ -37,5 +36,5 @@ handlers["/getAuthor"] = _getAuthor;
 
 // Exportando objeto manejador
 
-module.esports = handlers;
+module.exports = handlers;
 
